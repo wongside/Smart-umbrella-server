@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <script src="js/jquery.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <title>系统调试</title>
+</head>
+<body>
+<div class="container-fluid">
+    <br>
+    <br>
+        <div class="mx-auto w-75" align="center">
+            <div class="card">
+                <div class="card-header"><h1>服务器调试信息</h1></div>
+                <div class="card-body">
+                    <form>
+                        <div class="form-group">
+                            <textarea class="form-control" rows="20" id="message"></textarea>
+                        </div>
+                    </form>
+                </div>
+                <div class="card-footer">Power by Side</div>
+            </div>
+        </div>
+</div>
+<script>
+    function loadMessage() {
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function () {
+            if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
+                var message = document.getElementById("message");
+                message.innerHTML += xmlhttp.responseText;
+                if(xmlhttp.responseText !== ""){
+                    message.scrollTop = message.scrollHeight;
+                }
+            }
+        };
+        xmlhttp.open("POST", "message", true);
+        xmlhttp.send();
+    }
+    function load(){
+        loadMessage();
+    }
+    setInterval("load()", 1000);
+</script>
+</body>
+</html>
