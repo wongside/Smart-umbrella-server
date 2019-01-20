@@ -31,9 +31,9 @@
         var xmlhttp = new XMLHttpRequest();
         xmlhttp.onreadystatechange = function () {
             if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
-                var message = document.getElementById("message");
-                message.innerHTML += xmlhttp.responseText;
                 if(xmlhttp.responseText !== ""){
+                    var message = document.getElementById("message");
+                    message.innerHTML += xmlhttp.responseText;
                     message.scrollTop = message.scrollHeight;
                 }
             }
