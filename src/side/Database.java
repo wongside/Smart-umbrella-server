@@ -22,7 +22,7 @@ public class Database {
 
     public boolean insert(Sensor sensor){
         int ok = 0;
-        String sql = "insert into datatab(NAME,VALUE,TIME,USERNAME) VALUES('"+sensor.getName()
+        String sql = "insert into datatab(NAME,VALUE,TIME,DEVICE) VALUES('"+sensor.getName()
                 +"', "+sensor.getValue()+",  '"+sensor.getTime()+"', '"+sensor.getUserName()+"');";
         try {
             ok = stmt.executeUpdate(sql);
@@ -30,5 +30,25 @@ public class Database {
             SystemMessage.setMessage(e.toString());
         }
         return ok == 1;
+    }
+    public Sensor [] getSensor(String deviceId, String dataName, int count){
+        String sql = "SELECT * FROM datatab where NAME='"+ dataName +"' and device = '" + deviceId +
+                "' ORDER BY TIME DESC limit " + count;
+        Sensor sensor = null;
+        Sensor sensors[] = new Sensor[count];
+        try {
+            ResultSet rst = stmt.executeQuery(sql);
+            for(int i = 0; i < count && rst.next(); i++){
+                sensor = new Sensor();
+                String value = rst.getString("VALUE");
+                String time = rst.getString("TIME");
+                sensor.setTime(time);
+                sensor.setValue(value);
+                sensors[i] = sensor;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return sensors;
     }
 }

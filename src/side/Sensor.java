@@ -37,4 +37,14 @@ public class Sensor {
     public void setUserName(String userName) {
         this.userName = userName;
     }
+
+    @Override
+    public String toString() {
+        return "Sensor{" +
+                "name='" + name + '\'' +
+                ", value='" + value + '\'' +
+                ", time='" + time + '\'' +
+                ", userName='" + userName + '\'' +
+                '}';
+    }
 }
