@@ -1,4 +1,4 @@
-package side;
+package wang.side.bean;
 
 public class Sensor {
     private String name;

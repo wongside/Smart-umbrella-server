@@ -1,8 +1,9 @@
-package side;
+package wang.side.servlet;
 
 import com.google.gson.Gson;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonObject;
+import wang.side.utils.Database;
+import wang.side.utils.SystemMessage;
+import wang.side.bean.Sensor;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -19,12 +20,16 @@ import java.io.PrintWriter;
 public class WeChatServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String content = request.getParameter("content");
-        if(content.equals("data")){
-            getData(request,response);
-        }else if(content.equals("user")){
-            getUser(request,response);
-        }else{
-            SystemMessage.setMessage("请求参数错误！");
+        switch (content) {
+            case "data":
+                getData(request, response);
+                break;
+            case "user":
+                getUser(request, response);
+                break;
+            default:
+                SystemMessage.setMessage("请求参数错误！");
+                break;
         }
 
     }
@@ -32,7 +37,8 @@ public class WeChatServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         doPost(request, response);
     }
-    void test(HttpServletRequest request, HttpServletResponse response){
+
+    void test(HttpServletRequest request, HttpServletResponse response) {
         PrintWriter out = null;
         try {
             out = response.getWriter();
@@ -40,26 +46,29 @@ public class WeChatServlet extends HttpServlet {
                     + (request.getQueryString() != null ? "?" + request.getQueryString() : "");
             out.println(url);
         } catch (IOException e) {
-            e.printStackTrace();
+           SystemMessage.setMessage(e.toString());
         }
     }
-    void getData(HttpServletRequest request, HttpServletResponse response){
+
+    private void getData(HttpServletRequest request, HttpServletResponse response) {
         String deviceId = request.getParameter("deviceId");
         String dataName = request.getParameter("dataName");
         int count = Integer.parseInt(request.getParameter("count"));
         Database database = new Database();
-        Sensor sensor[] = database.getSensor(deviceId,dataName,count);
+        Sensor sensor[] = database.getSensor(deviceId, dataName, count);
         Gson gson = new Gson();
         String s = gson.toJson(sensor);
         try {
-            PrintWriter out  = response.getWriter();
+            PrintWriter out = response.getWriter();
             out.print(s);
         } catch (IOException e) {
-            e.printStackTrace();
+            SystemMessage.setMessage(e.toString());
         }
+        database.releaseSource();
 
     }
-    void getUser(HttpServletRequest request, HttpServletResponse response){
+
+    private void getUser(HttpServletRequest request, HttpServletResponse response) {
 
     }
 }

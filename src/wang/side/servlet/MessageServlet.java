@@ -1,4 +1,6 @@
-package side;
+package wang.side.servlet;
+
+import wang.side.utils.SystemMessage;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;

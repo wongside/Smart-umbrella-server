@@ -1,4 +1,8 @@
-package side;
+package wang.side.service;
+
+import wang.side.bean.Sensor;
+import wang.side.utils.Database;
+import wang.side.utils.SystemMessage;
 
 import java.io.UnsupportedEncodingException;
 import java.net.DatagramPacket;
@@ -57,6 +61,7 @@ public class Receiver implements Runnable {
                             }else{
                                 SystemMessage.setMessage("data insert is failed!");
                             }
+                            database.releaseSource();
                         }
                     } catch (Exception e) {
                         SystemMessage.setMessage(e.toString());

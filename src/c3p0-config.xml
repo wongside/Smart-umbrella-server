@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<c3p0-config>
+	<default-config> 
+		<property name="jdbcUrl">jdbc:mysql://47.93.227.16:3306/smart-umbrella?serverTimezone=UTC&amp;useUnicode=true&amp;characterEncoding=utf8</property>
+		<property name="driverClass">com.mysql.cj.jdbc.Driver</property>
+		<property name="user">root</property>
+		<property name="password">123456</property>
+	</default-config>
+</c3p0-config>

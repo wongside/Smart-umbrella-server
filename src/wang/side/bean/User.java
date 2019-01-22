@@ -1,4 +1,4 @@
-package side;
+package wang.side.bean;
 
 public class User {
     private String name;

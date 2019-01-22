@@ -1,4 +1,4 @@
-package side;
+package wang.side.utils;
 
 public class SystemMessage {
     private static String message = "\nSystem Started.";
