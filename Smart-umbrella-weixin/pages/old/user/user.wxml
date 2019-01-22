@@ -1,0 +1,21 @@
+<!--pages/user/user.wxml-->
+<view wx:if="{{online}}">
+    <text>{{name}},你已经成功登录！</text>
+    <button catchtap='onBackTap'>回到首页</button>
+    <button catchtap='onLogoffTap'>注销</button>
+</view>
+<view wx:else>
+    <form bindsubmit="formLogin" bindreset="formLogon">
+        <input name='name' placeholder='请输入用户名' ></input>
+        <input name='pwd' placeholder='请输入密码'></input>
+        
+        <view class="btn-area">
+            <button form-type="submit">登录</button>
+            <button form-type="reset">注册</button>
+            
+        </view>
+    </form>
+    
+</view>
+<button catchtap='onScanTap'>扫描设备</button>
+<button open-type='getUserInfo' bindgetuserinfo="getUserInfo">微信登录</button>

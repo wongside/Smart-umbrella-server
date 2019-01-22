@@ -1,0 +1,3 @@
+<view class="container" bindtap="bindViewTap">
+    <image  class="img" src="/images/cover.jpg" ></image>
+</view>
