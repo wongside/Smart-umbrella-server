@@ -6,7 +6,8 @@ Page({
         hasUserInfo: false,
         canIUse: wx.canIUse('button.open-type.getUserInfo'),
         deviceOline: false,
-        hasDevice: false
+        hasDevice: false,
+        deviceId:null
     },
     onLoad: function() {
         if (app.globalData.userInfo) {
@@ -43,24 +44,21 @@ Page({
         })
     },
     onScanTap: function(event) {
+        var that = this;
         wx.scanCode({
             success(res) {
-                console.log(res);
+                that.setData({
+                    deviceId:res.result
+                })
+                console.log(that.data.deviceId);
             }
         })
     },
     ondeviceInfoTap: function() {
         wx.showModal({
-            title: '我的雨伞',
-            content: '设备ID：' + app.globalData.deviceId,
+            title: '我的雨伞ID',
+            content: this.data.deviceId == null ? '你还没有设备呢' : this.data.deviceId,
             showCancel:false,
-            success(res) {
-                if (res.confirm) {
-                    console.log('用户点击确定')
-                } else if (res.cancel) {
-                    console.log('用户点击取消')
-                }
-            }
         })
     }
 

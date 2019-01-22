@@ -37,15 +37,21 @@ Page({
             id: 'refresh',
             name: '刷新数据'
         }],
+        timer:null
     },
-
-    onReady() {
-        if (!app.globalData.online) {
-            wx.switchTab({
-                url: "../user/user"
-            });
-        }
-        setInterval(this.refreshData, 3000);
+    onShow() {
+        // if (!app.globalData.online) {
+        //     wx.switchTab({
+        //         url: "../user/user"
+        //     });
+        // }
+        var timer = setInterval(this.refreshData, 3000);
+        this.setData({
+            timer:timer
+        });
+    },
+    onHide(){
+        clearInterval(this.data.timer);
     },
     refreshData: function() {
         for (var i = 0; i < 6; i++) {

@@ -24,8 +24,6 @@ App({
         online: false,
         url: "http://localhost" + "/weChat",
         userInfo: null,
-        deviceOline:false, 
-        hasDevice:false,
-        deviceId:'你还没有设备呢'
+        deviceOline:false,
     }
 })

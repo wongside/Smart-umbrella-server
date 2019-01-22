@@ -14,7 +14,7 @@
         </view>
         <button class='deviceInfo' catchtap='ondeviceInfoTap'>
         <text class="deviceName">我的雨伞</text>
-            <text class="device">无</text>
+            <text class="device">{{deviceId == null ? '无' : '在线'}}</text>
         </button>
         <button wx:if="{{!hasDevice}}" catchtap='onScanTap'
         type='primary'  class='scanButton'>
