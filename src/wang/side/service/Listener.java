@@ -14,6 +14,6 @@ public class Listener implements ServletContextListener{
     }
 
     public void contextDestroyed(ServletContextEvent sce) {
-        readData.stop();
+        readData.interrupt();
     }
 }

@@ -26,7 +26,7 @@ public class Receiver implements Runnable {
             } catch (Exception e) {
                 SystemMessage.setMessage(e.toString());
             }
-            while (true) {
+            while (Thread.currentThread().isInterrupted()) {
                 if (postman == null) break;
                 else {
                     try {
