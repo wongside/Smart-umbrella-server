@@ -14,8 +14,8 @@ public class SendTestData {
         Scanner scanner = new Scanner(System.in);
         try {
             byte[] buffer = new byte[1024];
-            //InetAddress address = InetAddress.getByName("webside.wang");
-            InetAddress address = InetAddress.getByName("127.0.0.1");
+            InetAddress address = InetAddress.getByName("webside.wang");
+//            InetAddress address = InetAddress.getByName("127.0.0.1");
             DatagramPacket dataPack = new DatagramPacket(buffer, buffer.length, address, 12345);
             DatagramSocket postman = new DatagramSocket();
             while (flag) {

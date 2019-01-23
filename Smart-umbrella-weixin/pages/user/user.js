@@ -22,7 +22,7 @@ Page({
                     hasUserInfo: true
                 })
             }
-        } else {
+        } else {ssd
             // 在没有 open-type=getUserInfo 版本的兼容处理
             wx.getUserInfo({
                 success: res => {

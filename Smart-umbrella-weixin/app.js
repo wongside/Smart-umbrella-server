@@ -1,6 +1,7 @@
 //app.js
 App({
     onLaunch: function() {
+        wx.clearStorageSync();
         wx.getSetting({
             success: res => {
                 if (res.authSetting['scope.userInfo']) {
@@ -18,11 +19,11 @@ App({
                     })
                 }
             }
-        })
+        });
     },
     globalData: {
         online: false,
-        url: "http://localhost" + "/weChat",
+        url: "https://webside.wang" + "/Smart-umbrella/weChat",
         userInfo: null,
         deviceOline:false,
     }
